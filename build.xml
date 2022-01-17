@@ -1,0 +1,33 @@
+<project>
+
+    <path id="external.classpath">
+        <pathelement location="/home/adam/Uczelnia/Compiler/antlr-4.9.3-complete.jar"/>
+    </path>
+
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src/java" destdir="build/classes"/>
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Compiler.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="comp.Core"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/Compiler.jar" fork="true"/>
+    </target>
+
+    <classpath>
+        <path refid="external.classpath" />
+    </classpath>
+</project>
